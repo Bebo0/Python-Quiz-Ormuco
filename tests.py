@@ -3,7 +3,8 @@ from questionA import Line, overlap
 
 from questionB.questionB import comparable
 
-from questionC.questionC import GDLRUC
+from questionC.Cache import Cache
+from questionC.CacheManager import CacheManager
 
 class TestQuestionA(unittest.TestCase):
 
@@ -55,20 +56,20 @@ class TestQuestionB(unittest.TestCase):
 class TestQuestionC(unittest.TestCase):
 	
 	def test_cache_get(self):
-		testCache = GDLRUC(2)
+		testCache = Cache(2, "Montreal")
 		testCache.set("hello world", "hello back")
 		testCache.set("foo", "bar")
 		self.assertEqual(testCache.get("hello world"), "hello back")
 
 	def test_cache_remove_and_set(self):
-		testCache = GDLRUC(2)
+		testCache = Cache(2, "Montreal")
 		testCache.set("hello world", "hello back")
 		testCache.set("foo", "bar")
 		testCache.set("ada", "lovelace")
 		self.assertEqual(testCache.get("hello world"), -1)
 
 	def test_cache_update_order(self):
-		testCache = GDLRUC(2)
+		testCache = Cache(2, "Montreal")
 		testCache.set("hello world", "hello back")
 		testCache.set("foo", "bar")
 		testCache.get("hello world")

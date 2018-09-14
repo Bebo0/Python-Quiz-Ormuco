@@ -2,8 +2,9 @@ import collections
 
 class GDLRUC(object):
 	"""A Geo Distributed LRU (Least Recently Used) cache model"""
-	def __init__(self, maxCapacity):
+	def __init__(self, maxCapacity, region):
 		self.maxCapacity = maxCapacity
+		self.region = region
 		# We use an OrderedDict instead of a normal dictionary because in 
 		# our case, the min key search in a dict is O(n) whereas a key search
 		# in an OrderedDict is O(1). This is b/c the oldest used item will 
@@ -11,7 +12,7 @@ class GDLRUC(object):
 		self.cache = collections.OrderedDict() # (key,value) = (itemName, timeAdded)
 
 	""" returns value corresponding to key
-	
+
 	If key is found, pops out the (key,value) pair from cache, then reinserts it so it becomes
 	the most recent item.
 	"""
@@ -27,7 +28,6 @@ class GDLRUC(object):
 
 	If pair already exists, make it the most recent item.
 	If cache is full, pops out last (key, value) pair, then inserts new pair.
-	
 	"""
 	def set(self, key, value):
 		try:
