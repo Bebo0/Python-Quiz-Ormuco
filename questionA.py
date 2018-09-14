@@ -9,7 +9,9 @@ class Line(object):
 	def getX2(self):
 		return self.x2
 		
+"""checks if 2 lines overlap
 
+"""
 def overlap(line1, line2):
 	x1 = line1.getX1()
 	x2 = line1.getX2()
