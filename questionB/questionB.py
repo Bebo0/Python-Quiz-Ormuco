@@ -4,7 +4,7 @@ from fractions import Fraction
 """
 def comparable(str1, str2):
 
-	# Filter out bools
+	# Filter out bools because bools are considered floats
 	if isinstance(str1, bool) or isinstance(str2, bool):
 		return False
 

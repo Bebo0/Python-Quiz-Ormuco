@@ -3,6 +3,8 @@ from questionA import Line, overlap
 
 from questionB.questionB import comparable
 
+from questionC.questionC import GDLRUC
+
 class TestQuestionA(unittest.TestCase):
 
 	def test_overlap(self):
@@ -48,6 +50,32 @@ class TestQuestionB(unittest.TestCase):
 		str1 = True
 		str2 = "1.2"
 		self.assertFalse(comparable(str1,str2))
+
+
+class TestQuestionC(unittest.TestCase):
+	
+	def test_cache_get(self):
+		testCache = GDLRUC(2)
+		testCache.set("hello world", "hello back")
+		testCache.set("foo", "bar")
+		self.assertEqual(testCache.get("hello world"), "hello back")
+
+	def test_cache_remove_and_set(self):
+		testCache = GDLRUC(2)
+		testCache.set("hello world", "hello back")
+		testCache.set("foo", "bar")
+		testCache.set("ada", "lovelace")
+		self.assertEqual(testCache.get("hello world"), -1)
+
+	def test_cache_update_order(self):
+		testCache = GDLRUC(2)
+		testCache.set("hello world", "hello back")
+		testCache.set("foo", "bar")
+		testCache.get("hello world")
+		testCache.set("ada", "lovelace")
+		self.assertEqual(testCache.get("hello world"), "hello back")
+		self.assertEqual(testCache.get("foo"), -1)
+
 
 if __name__ == '__main__':
 	unittest.main()
